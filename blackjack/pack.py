@@ -1,5 +1,5 @@
+import random
 from collections import namedtuple, deque
-from random import shuffle
 
 Card = namedtuple('Card', ['rank', 'suit'])
 
@@ -14,7 +14,7 @@ class Pack:
             for suit in self.suits
             for rank in self.ranks
         ]
-        self.sorted()
+        self.shuffle()
         self._cards = deque(self)
 
     def __len__(self):
@@ -26,8 +26,8 @@ class Pack:
     def __setitem__(self, position, card):
         self._cards[position] = card
 
-    def sorted(self):
-        return shuffle(self)
+    def shuffle(self):
+        return random.shuffle(self)
 
     def next(self):
         return self._cards.popleft()
