@@ -1,8 +1,4 @@
 class Blackjack:
-    # TODO: trocar para blackjack
-    def __init__(self, cards):
-        self.cards = cards
-
     PACK_SCORE_MAPPING = {
         'J': 10,
         'Q': 10,
@@ -10,9 +6,9 @@ class Blackjack:
         'A': 1
     }
 
-    def score(self):
+    def score(self, cards):
         score = 0
-        for card in self.cards:
+        for card in cards:
             try:
                 score += int(card.rank)
             except ValueError:
@@ -21,8 +17,8 @@ class Blackjack:
 
         return score
 
-    def is_twenty_one(self):
-        score = self.score()
+    def is_twenty_one(self, cards):
+        score = self.score(cards)
         if score == 21:
             return True
         return False

@@ -10,32 +10,32 @@ class TwentyOneTest(TestCase):
         cards = [Card(rank='10', suit='♠'),
                  Card(rank='5', suit='♠'),
                  Card(rank='6', suit='♠')]
-        twenty_one = Blackjack(cards)
+        blackjack = Blackjack()
 
-        self.assertEqual(21, twenty_one.score())
+        self.assertEqual(21, blackjack.score(cards))
 
     def test_score_21_with_cards_without_numbers(self):
         cards = [Card(rank='J', suit='♠'),
                  Card(rank='5', suit='♠'),
                  Card(rank='6', suit='♠')]
-        twenty_one = Blackjack(cards)
+        blackjack = Blackjack()
 
-        self.assertEqual(21, twenty_one.score())
+        self.assertEqual(21, blackjack.score(cards))
 
     def test_score_21_with_as_worth_1(self):
         cards = [Card(rank='A', suit='♠'),
                  Card(rank='10', suit='♠'),
                  Card(rank='8', suit='♠'),
                  Card(rank='2', suit='♠')]
-        twenty_one = Blackjack(cards)
+        blackjack = Blackjack()
 
-        self.assertEqual(21, twenty_one.score())
+        self.assertEqual(21, blackjack.score(cards))
 
     @skip('Essa regra ainda não foi implementada')
     def test_score_21_with_as_worth_11(self):
         cards = [Card(rank='A', suit='♠'),
                  Card(rank='8', suit='♠'),
                  Card(rank='2', suit='♠')]
-        twenty_one = Blackjack(cards)
+        blackjack = Blackjack()
 
-        self.assertEqual(21, twenty_one.score())
+        self.assertEqual(21, blackjack.score(cards))

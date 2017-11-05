@@ -5,13 +5,14 @@ from blackjack.blackjack import Blackjack
 class Run:
     def __init__(self):
         self.pack = Pack()
+        self.blackjack = Blackjack()
         self.main()
 
     def init_deck(self):
         return [self.pack.next(), self.pack.next()]
 
-    def bust_card(self, twenty_one, cards):
-        if twenty_one.score() > 21:
+    def bust_card(self, cards):
+        if self.blackjack.score(cards) > 21:
             return True
         return False
 
@@ -19,13 +20,12 @@ class Run:
         cards = self.init_deck()
 
         while True:
-            twenty_one = Blackjack(cards)
-            if self.bust_card(twenty_one=twenty_one, cards=cards):
+            if self.bust_card(cards=cards):
                 print('Você passou do limite de 21 pontos')
                 break
 
             print(cards)
-            print(f'Seu score é: {twenty_one.score()}')
+            print(f'Seu score é: {self.blackjack.score(cards)}')
 
             cmd = input('C = continue ou S = Stop')
             if cmd.lower() == 'c':
@@ -33,7 +33,7 @@ class Run:
             elif cmd.lower() == 's':
                 break
 
-        print(f'Sua pontuação final é {twenty_one.score()}')
+        print(f'Sua pontuação final é {self.blackjack.score(cards)}')
 
 
 if __name__ == '__main__':
