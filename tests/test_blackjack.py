@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 
 from blackjack.pack import Card
-from blackjack.blackjack import Blackjack
+from blackjack import Blackjack
 
 
 class TwentyOneTest(TestCase):

@@ -1,5 +1,5 @@
 from blackjack.pack import Pack
-from blackjack.blackjack import Blackjack
+from blackjack import Blackjack
 
 
 class Run:
@@ -16,6 +16,10 @@ class Run:
             return True
         return False
 
+    def my_score(self, cards):
+        print(cards)
+        print(f'Seu score é: {self.blackjack.score(cards)}\n')
+
     def main(self):
         cards = self.init_deck()
 
@@ -24,8 +28,7 @@ class Run:
                 print('Você passou do limite de 21 pontos')
                 break
 
-            print(cards)
-            print(f'Seu score é: {self.blackjack.score(cards)}')
+            self.my_score(cards)
 
             cmd = input('C = continue ou S = Stop')
             if cmd.lower() == 'c':
