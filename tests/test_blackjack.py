@@ -1,7 +1,7 @@
 from unittest import TestCase, skip
 
 from blackjack.pack import Card
-from blackjack.twenty_one import TwentyOne
+from blackjack.blackjack import Blackjack
 
 
 class TwentyOneTest(TestCase):
@@ -10,7 +10,7 @@ class TwentyOneTest(TestCase):
         cards = [Card(rank='10', suit='♠'),
                  Card(rank='5', suit='♠'),
                  Card(rank='6', suit='♠')]
-        twenty_one = TwentyOne(cards)
+        twenty_one = Blackjack(cards)
 
         self.assertEqual(21, twenty_one.score())
 
@@ -18,7 +18,7 @@ class TwentyOneTest(TestCase):
         cards = [Card(rank='J', suit='♠'),
                  Card(rank='5', suit='♠'),
                  Card(rank='6', suit='♠')]
-        twenty_one = TwentyOne(cards)
+        twenty_one = Blackjack(cards)
 
         self.assertEqual(21, twenty_one.score())
 
@@ -27,7 +27,7 @@ class TwentyOneTest(TestCase):
                  Card(rank='10', suit='♠'),
                  Card(rank='8', suit='♠'),
                  Card(rank='2', suit='♠')]
-        twenty_one = TwentyOne(cards)
+        twenty_one = Blackjack(cards)
 
         self.assertEqual(21, twenty_one.score())
 
@@ -36,6 +36,6 @@ class TwentyOneTest(TestCase):
         cards = [Card(rank='A', suit='♠'),
                  Card(rank='8', suit='♠'),
                  Card(rank='2', suit='♠')]
-        twenty_one = TwentyOne(cards)
+        twenty_one = Blackjack(cards)
 
         self.assertEqual(21, twenty_one.score())

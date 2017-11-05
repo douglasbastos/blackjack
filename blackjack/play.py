@@ -1,5 +1,5 @@
 from blackjack.pack import Pack
-from blackjack.twenty_one import TwentyOne
+from blackjack.blackjack import Blackjack
 
 
 class Run:
@@ -19,7 +19,7 @@ class Run:
         cards = self.init_deck()
 
         while True:
-            twenty_one = TwentyOne(cards)
+            twenty_one = Blackjack(cards)
             if self.bust_card(twenty_one=twenty_one, cards=cards):
                 print('Você passou do limite de 21 pontos')
                 break
