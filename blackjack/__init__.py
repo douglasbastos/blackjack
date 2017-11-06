@@ -16,9 +16,3 @@ class Blackjack:
                     score += self.PACK_SCORE_MAPPING[card.rank]
 
         return score
-
-    def is_twenty_one(self, cards):
-        score = self.score(cards)
-        if score == 21:
-            return True
-        return False
