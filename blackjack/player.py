@@ -1,4 +1,6 @@
 class Player:
+    score = 0
+    opponent_score = 0
 
     def will_continue(self):
         cmd = input('C = continue ou S = Stop\n')

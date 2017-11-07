@@ -1,17 +1,18 @@
-class CpuPlayer():
+from time import sleep
 
-    def __init__(self, cpu_score, player_score):
-        self.cpu_score = cpu_score
-        self.player_score = player_score
-        self.will_continue()
+
+class CpuPlayer():
+    score = 0
+    opponent_score = 0
 
     def will_continue(self):
-        if self.player_score:
-            if self.player_score > self.cpu_score:
+        sleep(1)
+        if self.opponent_score:
+            if self.opponent_score > self.score:
                 return True
             return False
         else:
             max_limit_continue = 17
-            if self.cpu_score > max_limit_continue:
+            if self.score > max_limit_continue:
                 return False
             return True
