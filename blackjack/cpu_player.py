@@ -3,10 +3,15 @@ class CpuPlayer():
     def __init__(self, cpu_score, player_score):
         self.cpu_score = cpu_score
         self.player_score = player_score
-        self.decision()
+        self.will_continue()
 
-    def decision(self):
-        pass
-        # se player começou jogando(score_player > 0), decisão de jogar fica se eu tenho menos pontos que ele
-        # se cpu começar jogando, quando fizer 18 pontos não pegar mais carta
-        # se player_score for igual a zero, significa que o player ainda não jogou
+    def will_continue(self):
+        if self.player_score:
+            if self.player_score > self.cpu_score:
+                return True
+            return False
+        else:
+            max_limit_continue = 17
+            if self.cpu_score > max_limit_continue:
+                return False
+            return True
