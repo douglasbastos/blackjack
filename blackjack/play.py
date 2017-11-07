@@ -1,5 +1,6 @@
 from blackjack.pack import Pack
 from blackjack import Blackjack
+from blackjack.player import Player
 
 
 class Run:
@@ -16,7 +17,7 @@ class Run:
             return True
         return False
 
-    def my_score(self, cards):
+    def player_score(self, cards):
         print([f'{card.rank} {card.suit}' for card in cards])
         print(f'Seu score é: {self.blackjack.score(cards)}\n')
 
@@ -48,19 +49,17 @@ class Run:
                 print('Você passou do limite de 21 pontos')
                 break
 
-            self.my_score(cards)
+            self.player_score(cards)
 
-            cmd = input('C = continue ou S = Stop\n')
-            if cmd.lower() == 'c':
+            player = Player() # TODO: será que aqui é o melhor lugar?
+            player_will_continue = player.will_continue()
+            if player_will_continue:
                 cards.append(self.pack.next())
-            elif cmd.lower() == 's':
-                break
             else:
-                # TODO: não temos teste nem implementação
-                print('Comando inválido')
+                break
 
         print(f'Sua pontuação final é {self.blackjack.score(cards)}')
-        self.cpu_player()
+        # self.cpu_player()
         # self.play_again()
 
 
