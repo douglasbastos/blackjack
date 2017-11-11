@@ -10,5 +10,5 @@ class HumanPlayer(Player):
         elif cmd.lower() == 's':
             return False
         else:
-            print('Comando inválido')
+            print('Opção inválida')
             return self.will_continue()

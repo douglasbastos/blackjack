@@ -22,4 +22,4 @@ class HumanPlayerTest(TestCase):
         player = HumanPlayer()
         player.will_continue()
         self.assertEqual(print_.call_args_list[0],
-                         call('Comando inválido'))
+                         call('Opção inválida'))
