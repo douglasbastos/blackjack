@@ -1,9 +1,22 @@
 from time import sleep
 
+from blackjack import Blackjack
+
 
 class CpuPlayer():
-    score = 0
-    opponent_score = 0
+    cards = []
+    opponent_cards = []
+
+    def __init__(self):
+        self.blackjack = Blackjack()
+
+    @property
+    def score(self):
+        return self.blackjack.score(self.cards)
+
+    @property
+    def opponent_score(self):
+        return self.blackjack.score(self.opponent_cards)
 
     def will_continue(self):
         sleep(1)

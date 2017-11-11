@@ -2,8 +2,8 @@ from unittest import TestCase, mock
 from unittest.mock import call
 
 from blackjack.pack import Card
+from blackjack.players.player import Player
 from blackjack.run import Run
-from blackjack.player import Player
 
 
 class PlayTest(TestCase):
@@ -32,5 +32,5 @@ class PlayTest(TestCase):
                                                  player_continue,
                                                  bust_card):
         Run()
-        self.assertEqual(print_.call_args_list[0],
+        self.assertEqual(print_.call_args_list[-1],
                          call('Você passou do limite de 21 pontos'))

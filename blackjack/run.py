@@ -1,18 +1,32 @@
 import random
+import uuid
 
-from blackjack.cpu_player import CpuPlayer
-from blackjack.pack import Pack
 from blackjack import Blackjack
-from blackjack.player import Player
+from blackjack.pack import Pack
+from blackjack.players.cpu_player import CpuPlayer
+from blackjack.players.player import Player
 
 
 class Run:
     def __init__(self):
         self.pack = Pack()
         self.blackjack = Blackjack()
+        self.players = []
 
-        self.players = random.sample([Player, CpuPlayer], k=2)
-        self.players = [CpuPlayer] # todo: para test
+        available_players = random.sample([Player, CpuPlayer], k=2)
+        for available_player in available_players:
+            player = available_player()
+            player.cards = self.init_deck()
+
+            obj_player = {
+                'player': player,
+                'cards': player.cards,
+                'score': player.score,
+                'name': str(uuid.uuid4())
+            }
+
+            self.players.append(obj_player)
+
         self.main()
 
     def init_deck(self):
@@ -23,10 +37,13 @@ class Run:
             return True
         return False
 
-    def player_score(self, cards):
-        print([f'{card.rank} {card.suit}' for card in cards])
-        print(f'Seu score é: {self.blackjack.score(cards)}\n')
-        return self.blackjack.score(cards)
+    def show_scores(self):
+        for player in self.players:
+            print(f"Player: {player['name']}")
+            print([f'{card.rank} {card.suit}' for card in player['cards']])
+            print(f"Score é: {player['player'].score}\n")
+        print("/\/\/\/\//\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\\")
+        print("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV")
 
     # def play_again(self):
     #     # TODO: não temos teste para isso ainda
@@ -40,24 +57,24 @@ class Run:
     #         self.play_again()
 
     def main(self):
-        for player_time in self.players:
-            cards = self.init_deck()
-            player = player_time()
+        for i, player_time in enumerate(self.players):
+            player = player_time['player']
+
+            if i != 0:
+                player.opponent_cards = self.players[i-1]['cards']
 
             while True:
-                if self.bust_card(cards=cards):
+                self.show_scores()
+
+                if self.bust_card(cards=player_time['cards']):
                     print('Você passou do limite de 21 pontos')
                     break
 
-                player.score = self.player_score(cards)
-                player_will_continue = player.will_continue()
-                if player_will_continue:
-                    cards.append(self.pack.next())
+                player.cards = player_time['cards']
+                if player.will_continue():
+                    player_time['cards'].append(self.pack.next())
                 else:
                     break
-
-        print(f'Sua pontuação final é {self.blackjack.score(cards)}')
-        # self.play_again()
 
 
 if __name__ == '__main__':
