@@ -2,7 +2,7 @@ from unittest import TestCase, mock
 from unittest.mock import call
 
 from blackjack.pack import Card
-from blackjack.players.player import Player
+from blackjack.players.human_player import HumanPlayer
 from blackjack.run import Run
 
 
@@ -25,7 +25,7 @@ class PlayTest(TestCase):
         self.assertFalse(run.bust_card(cards))
 
     @mock.patch.object(Run, 'bust_card', return_value=True)
-    @mock.patch.object(Player, 'will_continue', return_value=False)
+    @mock.patch.object(HumanPlayer, 'will_continue', return_value=False)
     @mock.patch('blackjack.run.print')
     def test_stop_running_when_bust_card_is_true(self,
                                                  print_,

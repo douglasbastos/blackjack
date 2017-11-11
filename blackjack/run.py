@@ -4,7 +4,7 @@ import uuid
 from blackjack import Blackjack
 from blackjack.pack import Pack
 from blackjack.players.cpu_player import CpuPlayer
-from blackjack.players.player import Player
+from blackjack.players.human_player import HumanPlayer
 
 
 class Run:
@@ -13,7 +13,7 @@ class Run:
         self.blackjack = Blackjack()
         self.players = []
 
-        available_players = random.sample([Player, CpuPlayer], k=2)
+        available_players = random.sample([HumanPlayer, CpuPlayer], k=2)
         for available_player in available_players:
             player = available_player()
             player.cards = self.init_deck()
