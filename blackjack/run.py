@@ -45,17 +45,6 @@ class Run:
         print("/\/\/\/\//\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\\")
         print("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV")
 
-    # def play_again(self):
-    #     # TODO: não temos teste para isso ainda
-    #     cmd = input('Deseja jogar novamente: y/n\n')
-    #     if cmd.lower() == 'y':
-    #         self.main()
-    #     elif cmd.lower() == 'n':
-    #         print('\n!!! Jogo encerrado !!!\n')
-    #     else:
-    #         print('Comando inválido')
-    #         self.play_again()
-
     def main(self):
         for i, player_time in enumerate(self.players):
             player = player_time['player']
@@ -67,7 +56,7 @@ class Run:
                 self.show_scores()
 
                 if self.bust_card(cards=player_time['cards']):
-                    print('Você passou do limite de 21 pontos')
+                    print(f'{player["name"]} passou do limite de 21 pontos')
                     break
 
                 player.cards = player_time['cards']
@@ -78,4 +67,12 @@ class Run:
 
 
 if __name__ == '__main__':
-    Run()
+    while True:
+        Run()
+        cmd = input('Jogar novamente\nS (sim)/N (não) \n')
+        if cmd.lower() == 's':
+            continue
+        elif cmd.lower() == 'n':
+            break
+        else:
+            print('Saída inválido')
