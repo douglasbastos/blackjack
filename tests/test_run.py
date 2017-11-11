@@ -33,4 +33,4 @@ class PlayTest(TestCase):
                                                  bust_card):
         Run()
         self.assertEqual(print_.call_args_list[-1],
-                         call('Você passou do limite de 21 pontos'))
+                         call('Passou do limite de 21 pontos'))
