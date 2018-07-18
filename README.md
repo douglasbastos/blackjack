@@ -2,7 +2,7 @@ Blackjack
 ---
 Jogue 21 no seu terminal
 
-Pré-requísito
+Pré-requisito
 ---
     python>=3.6
     
